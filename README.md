@@ -3,10 +3,17 @@ tmux-batterylife
 
 Show battery life as hearts in tmux
 
-red hearts	charged<br/>
-white hearts	not charged<br/>
-black hearts	gap between designed charge and last maximum charge<br/>
-
+<table border="0">
+	<tr>
+		<td>red hearts</td><td>charged</td>
+	</tr<
+	<tr>
+		<td>white hearts</td><td>not charged</td>
+	
+	<tr>
+		<td>black hearts</td><td>gap between designed charge and last maximum charge</td>
+	</tr>
+</table>
 
 how to use:
 <ul>
