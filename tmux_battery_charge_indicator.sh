@@ -15,9 +15,9 @@ if [[ `uname` == 'Linux' ]]; then
 	# in older Linux (e. g. CentOS) the files are located here
 	elif [ -d /proc/acpi/battery/BAT1/ ]
 	then
-		current_charge=$(cat /proc/acpi/battery/BAT1/state | grep 'remaining capacity' | awk '{print $3}')
-		total_charge=$(cat /proc/acpi/battery/BAT1/info | grep 'last full capacity' | awk '{print $4}')
-		design_charge=$(cat /proc/acpi/battery/BAT1/info | grep 'design capacity' | awk '{print $3}')
+		current_charge=$(cat /proc/acpi/battery/BAT1/state | grep 'remaining capacity:' | awk '{print $3}')
+		total_charge=$(cat /proc/acpi/battery/BAT1/info | grep 'last full capacity:' | awk '{print $4}')
+		design_charge=$(cat /proc/acpi/battery/BAT1/info | grep 'design capacity:' | awk '{print $3}')
 	fi
 	
 # for apple (not tested)
