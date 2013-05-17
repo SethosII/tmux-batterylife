@@ -25,6 +25,7 @@ else
 	battery_info=`ioreg -rc AppleSmartBattery`
 	current_charge=$(echo $battery_info | grep -o '"CurrentCapacity" = [0-9]\+' | awk '{print $3}')
 	total_charge=$(echo $battery_info | grep -o '"MaxCapacity" = [0-9]\+' | awk '{print $3}')
+	design_charge=$(echo $battery_info | grep -o '"DesignCapacity" = [0-9]\+' | awk '{print $3}')
 fi
 
 # 2. calcuate slots
