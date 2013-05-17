@@ -35,6 +35,9 @@ if [[ $charged_slots -gt 10 ]]; then
 fi
 
 dead_slots=$(echo "(1-$total_charge/$design_charge)*10" | bc -l | awk -F. '{print $1}')
+if [[ $dead_slots -lt 1 ]]; then
+	dead_slots=0
+fi
 
 # 3. print hearts
 echo -n '#[fg=red]'
