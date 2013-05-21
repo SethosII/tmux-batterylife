@@ -11,7 +11,6 @@ works on Linux and OS X
 	</tr>
 	<tr>
 		<td>white hearts</td><td>not charged</td>
-	
 	<tr>
 		<td>black hearts</td><td>gap between designed charge and last maximum charge</td>
 	</tr>
