@@ -5,13 +5,18 @@ HEART='♥'
 # 1. find battery data
 # for linux
 if [[ `uname` == 'Linux' ]]; then
-	# in modern Linux files are located here
+	# in modern Linux distributions files are located here
 	if [ -d /sys/class/power_supply/BAT0/ ]
 	then
 		current_charge=$(cat /sys/class/power_supply/BAT0/charge_now)
 		total_charge=$(cat /sys/class/power_supply/BAT0/charge_full)
 		design_charge=$(cat /sys/class/power_supply/BAT0/charge_full_design)
-
+	# in Mint 15 it's here
+	elif [ -d /sys/class/power_supply/BAT1/ ]
+	then
+		current_charge=$(cat /sys/class/power_supply/BAT1/energy_now)
+		total_charge=$(cat /sys/class/power_supply/BAT1/energy_full)
+		design_charge=$(cat /sys/class/power_supply/BAT1/energy_full_design)
 	# in older Linux (e. g. CentOS) the files are located here
 	elif [ -d /proc/acpi/battery/BAT1/ ]
 	then
