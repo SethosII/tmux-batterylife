@@ -3,6 +3,8 @@ tmux-batterylife
 
 Show battery life as hearts in tmux
 
+![Screenshot](https://github.com/SethosII/tmux-batterylife/blob/master/example.png)
+
 Works on Linux and OS X
 
 <table border="0">
