@@ -3,9 +3,7 @@ tmux-batterylife
 
 Show battery life as hearts in tmux
 
-![Screenshot](https://github.com/SethosII/tmux-batterylife/blob/master/example.png)
-
-Works on Linux and OS X
+![Screenshot](/example.png)
 
 <table border="0">
 	<tr>
@@ -18,9 +16,14 @@ Works on Linux and OS X
 	</tr>
 </table>
 
-How to use:
+Usage
+-----
 
 * Add a line in your ~/.tmux.conf to change the status bar - an example is given in the example_tmux.conf file
 * Copy the tmux_battery_charge_indicator.sh file to the directory specified in your ~/.tmux.conf and make it executable
+
+<br/>
+
+Works on Linux and OS X
 
 Inspired by [http://ficate.com/blog/2012/10/15/battery-life-in-the-land-of-tmux/](http://ficate.com/blog/2012/10/15/battery-life-in-the-land-of-tmux/)
