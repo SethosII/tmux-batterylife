@@ -19,7 +19,7 @@ Show battery life as hearts in tmux
 Usage
 -----
 
-* Add a line in your ~/.tmux.conf to change the status bar - an example is given in the example_tmux.conf file
+* Add a line in your ~/.tmux.conf to change the status bar - an example is given in the [example_tmux.conf](/example_tmux.conf) file
 * Copy the tmux_battery_charge_indicator.sh file to the directory specified in your ~/.tmux.conf and make it executable
 
 <br/>
