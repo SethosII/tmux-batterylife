@@ -46,7 +46,7 @@ else
 fi
 
 # 2. calcuate slots
-charged_slots=$(echo "$current_charge/$design_charge*10" | bc -l | awk -F. '{print $1}')
+charged_slots=$(echo "$current_charge/$design_charge*10+0.9999" | bc -l | awk -F. '{print $1}')
 
 dead_slots=$(echo "(1-$total_charge/$design_charge)*10" | bc -l | awk -F. '{print $1}')
 if [[ $dead_slots -lt 1 ]]; then
