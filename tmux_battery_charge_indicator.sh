@@ -1,11 +1,11 @@
 #!/bin/bash
 
-HEART='♥'
-TOTAL_SLOTS=10
+heart="♥"
+total_slots=10
 
 # 1. find battery data
 # for linux
-if [[ $(uname) == 'Linux' ]]; then
+if [[ $(uname) == "Linux" ]]; then
 
 	# check usual locations for battery folder
 	if [[ -d $(echo /sys/class/power_supply/BAT?/ | cut -d " " -f 1) ]]
@@ -48,9 +48,9 @@ fi
 
 # 2. calcuate slots
 # ceil(x/y)=(x+y-1)/y with integer arithmetic
-charged_slots=$((($current_charge*$TOTAL_SLOTS+$design_charge-1)/$design_charge))
+charged_slots=$((($current_charge*$total_slots+$design_charge-1)/$design_charge))
 
-dead_slots=$(($TOTAL_SLOTS-($total_charge*$TOTAL_SLOTS+$design_charge-1)/$design_charge))
+dead_slots=$(($total_slots-($total_charge*$total_slots+$design_charge-1)/$design_charge))
 if [[ $dead_slots -lt 1 ]]; then
 	dead_slots=0
 fi
@@ -58,28 +58,27 @@ fi
 # 3. print hearts
 if [[ $charged_slots -ge 1 ]]
 then
-	echo -n '#[fg=red]'
+	echo -n "#[fg=red]"
 	for i in $(seq 1 $charged_slots)
 	do
-		echo -n "$HEART"
+		echo -n "$heart"
 	done
 fi
 
-if [[ $charged_slots -lt $TOTAL_SLOTS ]]
+if [[ $charged_slots -lt $total_slots ]]
 then
-	echo -n '#[fg=white]'
-	for i in $(seq 1 $(($TOTAL_SLOTS-($charged_slots+$dead_slots))))
+	echo -n "#[fg=white]"
+	for i in $(seq 1 $(($total_slots-($charged_slots+$dead_slots))))
 	do
-		echo -n "$HEART"
+		echo -n "$heart"
 	done
 fi
 
 if [[ $dead_slots -ge 1 ]]
 then
-	echo -n '#[fg=black]'
+	echo -n "#[fg=black]"
 	for i in $(seq 1 $dead_slots)
 	do
-		echo -n "$HEART"
+		echo -n "$heart"
 	done
 fi
-
