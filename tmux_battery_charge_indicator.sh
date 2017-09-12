@@ -10,33 +10,36 @@ if [[ $(uname) == "Linux" ]]; then
 	# check usual locations for battery folder
 	if [[ -d $(echo /sys/class/power_supply/BAT?/ | cut -d " " -f 1) ]]
 	then
-		directory=$(echo /sys/class/power_supply/BAT?/ | cut -d " " -f 1)
+		directories=$(echo /sys/class/power_supply/BAT?/)
 	elif [[ -d $(echo /proc/acpi/battery/BAT?/ | cut -d " " -f 1) ]]
 	then
-		directory=$(echo /proc/acpi/battery/BAT?/ | cut -d " " -f 1)
+		directories=$(echo /proc/acpi/battery/BAT?/)
 	else
 		exit 1
 	fi
 
 	# check different possibilities for storing the battery data
-	if [[ -f "$directory"charge_now ]]
-	then
-		current_charge=$(cat "$directory"charge_now)
-		total_charge=$(cat "$directory"charge_full)
-		design_charge=$(cat "$directory"charge_full_design)
-	elif [[ -f "$directory"energy_now ]]
-	then
-		current_charge=$(cat "$directory"energy_now)
-		total_charge=$(cat "$directory"energy_full)
-		design_charge=$(cat "$directory"energy_full_design)
-	elif [[ -f "$directory"energy_now ]]
-	then
-		current_charge=$(grep "remaining capacity:" "$directory"state | cut -d " " -f 3)
-		total_charge=$(grep "last full capacity:" "$directory"info | cut -d " " -f 4)
-		design_charge=$(grep "design capacity:" "$directory"info | cut -d " " -f 3)
-	else
-		exit 2
-	fi
+	for directory in $directories
+	do
+		if [[ -f "$directory"charge_now ]]
+		then
+			((current_charge+=$(cat "$directory"charge_now)))
+			((total_charge+=$(cat "$directory"charge_full)))
+			((design_charge+=$(cat "$directory"charge_full_design)))
+		elif [[ -f "$directory"energy_now ]]
+		then
+			((current_charge+=$(cat "$directory"energy_now)))
+			((total_charge+=$(cat "$directory"energy_full)))
+			((design_charge+=$(cat "$directory"energy_full_design)))
+		elif [[ -f "$directory"energy_now ]]
+		then
+			((current_charge+=$(grep "remaining capacity:" "$directory"state | cut -d " " -f 3)))
+			((total_charge+=$(grep "last full capacity:" "$directory"info | cut -d " " -f 4)))
+			((design_charge+=$(grep "design capacity:" "$directory"info | cut -d " " -f 3)))
+		else
+			exit 2
+		fi
+	done
 
 # for apple (not tested)
 else
