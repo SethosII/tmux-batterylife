@@ -5,7 +5,8 @@ total_slots=10
 
 # 1. find battery data
 # for linux
-if [[ $(uname) == "Linux" ]]; then
+if [[ $(uname) == "Linux" ]]
+then
 
 	# check usual locations for battery folder
 	if [[ -d $(echo /sys/class/power_supply/BAT?/ | cut -d " " -f 1) ]]
@@ -54,7 +55,8 @@ fi
 charged_slots=$((($current_charge*$total_slots+$design_charge-1)/$design_charge))
 
 dead_slots=$(($total_slots-($total_charge*$total_slots+$design_charge-1)/$design_charge))
-if [[ $dead_slots -lt 1 ]]; then
+if [[ $dead_slots -lt 1 ]]
+then
 	dead_slots=0
 fi
 
