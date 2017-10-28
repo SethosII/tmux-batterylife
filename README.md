@@ -26,4 +26,4 @@ Usage
 
 Works on Linux and OS X
 
-Inspired by [http://ficate.com/blog/2012/10/15/battery-life-in-the-land-of-tmux/](http://ficate.com/blog/2012/10/15/battery-life-in-the-land-of-tmux/)
+Inspired by https://aaronlasseigne.com/2012/10/15/battery-life-in-the-land-of-tmux/
