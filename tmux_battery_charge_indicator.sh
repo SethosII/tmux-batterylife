@@ -32,7 +32,7 @@ then
 			((current_charge+=$(cat "$directory"energy_now)))
 			((total_charge+=$(cat "$directory"energy_full)))
 			((design_charge+=$(cat "$directory"energy_full_design)))
-		elif [[ -f "$directory"energy_now ]]
+		elif [[ -f "$directory"state ]]
 		then
 			((current_charge+=$(grep "remaining capacity:" "$directory"state | cut -d " " -f 3)))
 			((total_charge+=$(grep "last full capacity:" "$directory"info | cut -d " " -f 4)))
