@@ -115,6 +115,48 @@ function print_hearts {
 	fi
 }
 
-charges=$(find_battery_data)
-slots=$(calculate_slots ${charges})
-print_hearts ${slots}
+function test_find_battery_data {
+	if [ -z "$(find_battery_data)" ]
+	then
+		echo "test_find_battery_data failed at line $LINENO"
+	fi
+}
+
+function test_calculate_slots {
+	if [ "$(calculate_slots 80 90 100)" != "8
+1" ]
+	then
+		echo "test_calculate_slots failed at line $LINENO"
+	fi
+	if [ "$(calculate_slots 80 95 100)" != "8
+0" ]
+	then
+		echo "test_calculate_slots failed at line $LINENO"
+	fi
+}
+
+function test_print_hearts {
+	if [ "$(print_hearts 8 1)" != "#[fg=red]♥♥♥♥♥♥♥♥#[fg=white]♥#[fg=black]♥" ]
+	then
+		echo "test_print_hearts failed at line $LINENO"
+	fi
+	if [ "$(print_hearts 9 0)" != "#[fg=red]♥♥♥♥♥♥♥♥♥#[fg=white]♥" ]
+	then
+		echo "test_print_hearts failed at line $LINENO"
+	fi
+}
+
+function test_all {
+	test_find_battery_data
+	test_calculate_slots
+	test_print_hearts
+}
+
+if [ "$1" == "test" ]
+then
+	test_all
+else
+	charges=$(find_battery_data)
+	slots=$(calculate_slots ${charges})
+	print_hearts ${slots}
+fi
